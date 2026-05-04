@@ -94,7 +94,7 @@ const successBox = document.getElementById('formSuccess');
 const submitBtn = document.getElementById('submitBtn');
 const btnText = document.getElementById('btnText');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const nome = form.nome;
@@ -129,33 +129,47 @@ form.addEventListener('submit', (e) => {
 
   if (!valido) return;
 
+  const data = {
+    nome: nome.value,
+    telefone: telefone.value,
+    quantidade: quantidade.value,
+    observacoes: observacoes.value,
+    data: new Date().toLocaleString()
+  };
+
   // ===============================
-  // MONTAR MENSAGEM WHATSAPP
+  // ENVIAR PARA GOOGLE SHEETS
+  // ===============================
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbwq0E6di0uCT1zYWVJ0ZySDf470xlVkkVbF75M140-TRRBD0Uk01DWvd50l7H_aWEpspg/exec', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    console.warn("Erro ao salvar na planilha:", error);
+  }
+
+  // ===============================
+  // MONTAR WHATSAPP
   // ===============================
   const mensagem = `
 Olá! Quero fazer um pedido de suco de laranja 🍊
 
-Nome: ${nome.value}
-Telefone: ${telefone.value}
-Quantidade: ${quantidade.value}
-Entrega: (informar endereço)
-Observações: ${observacoes.value || 'Nenhuma'}
+Nome: ${data.nome}
+Telefone: ${data.telefone}
+Quantidade: ${data.quantidade}
+Observações: ${data.observacoes || 'Nenhuma'}
 
 Vim pelo site 😊
 `;
 
-  const numero = "5517996700461";
+  const numero = "5517996700461"; // SEU NÚMERO
 
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
-  // ===============================
-  // ABRIR WHATSAPP
-  // ===============================
   window.open(url, '_blank');
 
-  // ===============================
-  // FEEDBACK VISUAL (OPCIONAL)
-  // ===============================
+  // FEEDBACK VISUAL
   form.style.display = 'none';
   successBox.hidden = false;
 });
