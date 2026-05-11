@@ -76,24 +76,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===============================
+  // ADICIONAR / REMOVER ITEM DE QUANTIDADE
+  // ===============================
+  const btnAddItem    = document.getElementById('btnAddItem');
+  const btnRemoveItem = document.getElementById('btnRemoveItem');
+  const item2         = document.getElementById('item2');
+
+  if (btnAddItem && btnRemoveItem && item2) {
+    btnAddItem.addEventListener('click', () => {
+      item2.removeAttribute('hidden');
+      btnAddItem.style.display = 'none';
+    });
+
+    btnRemoveItem.addEventListener('click', () => {
+      item2.setAttribute('hidden', '');
+      btnAddItem.style.display = '';
+      document.getElementById('qtd2').value  = '';
+      document.getElementById('tipo2').selectedIndex = 0;
+    });
+  }
+
+  // ===============================
   // FORMULÁRIO
   // ===============================
-  const form = document.getElementById('orderForm');
-  const successBox = document.getElementById('formSuccess');
+  const form          = document.getElementById('orderForm');
+  const successBox    = document.getElementById('formSuccess');
   const novoPedidoBtn = document.getElementById('novoPedido');
+  const submitBtn     = document.getElementById('submitBtn');
+  const btnText       = document.getElementById('btnText');
 
   if (form && successBox) {
 
-    // GARANTE que começa escondido
-    successBox.hidden = true;
+    successBox.removeAttribute('hidden');
+    successBox.setAttribute('hidden', '');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const nome = form.nome;
-      const telefone = form.telefone;
-      const quantidade = form.quantidade;
+      const nome       = form.nome;
+      const telefone   = form.telefone;
       const observacoes = form.observacoes;
+      const qtd1       = document.getElementById('qtd1');
+      const tipo1      = document.getElementById('tipo1');
+      const qtd2       = document.getElementById('qtd2');
+      const tipo2      = document.getElementById('tipo2');
 
       let valido = true;
 
@@ -112,20 +138,34 @@ document.addEventListener('DOMContentLoaded', () => {
         valido = false;
       }
 
-      if (!quantidade.value) {
-        document.getElementById('erroQuantidade').textContent = 'Selecione a quantidade';
-        quantidade.classList.add('error');
+      const item1valido  = qtd1.value && tipo1.value;
+      const item2visivel = item2 && !item2.hasAttribute('hidden');
+      const item2valido  = !item2visivel || (qtd2.value && tipo2.value);
+
+      if (!item1valido || !item2valido) {
+        document.getElementById('erroQuantidade').textContent =
+          'Preencha a quantidade e a embalagem de cada item';
         valido = false;
       }
 
       if (!valido) return;
 
+      // Monta string de quantidade para a planilha
+      let quantidadeTexto = `${qtd1.value}x ${tipo1.value}`;
+      if (item2visivel && qtd2.value && tipo2.value) {
+        quantidadeTexto += ` + ${qtd2.value}x ${tipo2.value}`;
+      }
+
+      // BLOQUEAR BOTÃO + LOADING
+      submitBtn.disabled = true;
+      btnText.innerHTML = '<span class="btn-spinner"></span> Enviando...';
+
       const data = {
-        nome: nome.value,
-        telefone: telefone.value,
-        quantidade: quantidade.value,
+        nome:       nome.value,
+        telefone:   telefone.value,
+        quantidade: quantidadeTexto,
         observacoes: observacoes.value,
-        data: new Date().toLocaleString()
+        data:       new Date().toLocaleString()
       };
 
       // GOOGLE SHEETS
@@ -152,9 +192,13 @@ Vim pelo site 😊
 
       window.open(`https://wa.me/5517996700461?text=${encodeURIComponent(mensagem)}`, '_blank');
 
+      // RESTAURAR BOTÃO
+      submitBtn.disabled = false;
+      btnText.innerHTML = 'Enviar pedido 🍊';
+
       // MOSTRAR SUCESSO
       form.style.display = 'none';
-      successBox.hidden = false;
+      successBox.removeAttribute('hidden');
     });
 
     // NOVO PEDIDO
@@ -162,7 +206,15 @@ Vim pelo site 😊
       novoPedidoBtn.addEventListener('click', () => {
         form.reset();
         form.style.display = 'flex';
-        successBox.hidden = true;
+        successBox.setAttribute('hidden', '');
+
+        // Resetar item2 também
+        if (item2) {
+          item2.setAttribute('hidden', '');
+          document.getElementById('qtd2').value = '';
+          document.getElementById('tipo2').selectedIndex = 0;
+        }
+        if (btnAddItem) btnAddItem.style.display = '';
       });
     }
   }

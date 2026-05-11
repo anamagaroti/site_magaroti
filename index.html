@@ -26,7 +26,7 @@
   <header class="header" id="header">
     <nav class="nav container">
       <!-- <a href="#hero" class="nav__logo" aria-label="Magaroti Sucos">
-        <span class="logo-text">Magaroti</span>
+        <span class="logo-text">Magaroti</span>x
         <span class="logo-sub">sucos</span>
       </a> -->
        <a href="#hero" class="nav__logo" aria-label="Magaroti Sucos">
@@ -34,6 +34,7 @@
       </a>
       <ul class="nav__links" id="navLinks">
         <li><a href="#sobre" class="nav__link">Quem Somos</a></li>
+        <!-- <li><a href="#familia" class="nav__link">Nossa Família</a></li> -->
         <li><a href="#processo" class="nav__link">Produção</a></li>
         <li><a href="#diferenciais" class="nav__link">Diferenciais</a></li>
         <li><a href="#galeria" class="nav__link">Produto</a></li>
@@ -89,17 +90,11 @@
           </div>
         </div>
         <div class="hero__visual">
+            
           <div class="hero__bottle-wrap">
-            <div class="hero__bottle">
-              <div class="bottle-label">
-                <span class="label-brand">Magaroti</span>
-                <span class="label-type">Suco de Laranja</span>
-                <span class="label-size">500ml</span>
-              </div>
-            </div>
+            <img src="img/produto.svg" alt="Produto Magaroti Sucos">
             <div class="hero__slice hero__slice--1">🍊</div>
             <div class="hero__slice hero__slice--2">🌿</div>
-            <div class="hero__slice hero__slice--3">✨</div>
           </div>
         </div>
       </div>
@@ -156,6 +151,47 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== FAMÍLIA ===== -->
+<!-- <section class="familia section" id="familia">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Quem faz acontecer</span>
+      <h2 class="section-title">Conheça nossa família</h2>
+      <p class="section-desc">Do pomar ao copo, cada etapa tem um rosto e uma história por trás.</p>
+    </div>
+    <div class="familia__grid">
+
+      <div class="familia__card">
+        <div class="familia__avatar familia__avatar--pai">🌳</div>
+        <div class="familia__info">
+          <span class="familia__role">O Produtor</span>
+          <h3 class="familia__nome">Pai</h3>
+          <p>Quem cuida do pomar com dedicação de anos. É ele quem conhece cada pé de laranja, quem sente quando a fruta está no ponto certo para colher. Toda a qualidade começa nas mãos dele.</p>
+        </div>
+      </div>
+
+      <div class="familia__card familia__card--destaque">
+        <div class="familia__avatar familia__avatar--mae">🍊</div>
+        <div class="familia__info">
+          <span class="familia__role">A Produtora</span>
+          <h3 class="familia__nome">Mãe</h3>
+          <p>A responsável por transformar a laranja em suco. É ela quem espreme, embala e garante que cada garrafa saia perfeita. O cuidado e o carinho que você sente no sabor vêm das mãos dela.</p>
+        </div>
+      </div>
+
+      <div class="familia__card">
+        <div class="familia__avatar familia__avatar--filho">📲</div>
+        <div class="familia__info">
+          <span class="familia__role">O Gestor</span>
+          <h3 class="familia__nome">O Filho</h3>
+          <p>Cuida de tudo que acontece fora do pomar — administração, marketing, divulgação e relacionamento com os clientes. É quem leva o trabalho da família até você.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section> -->
 
     <!-- ===== PROCESSO ===== -->
     <section class="processo section section--alt" id="processo">
@@ -334,17 +370,55 @@
               <span class="form__error" id="erroTelefone"></span>
             </div>
             <div class="form__group">
-              <label class="form__label" for="quantidade">Quantidade desejada *</label>
-              <select class="form__input form__select" id="quantidade" name="quantidade" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="1-5">1 a 5 unidades (500ml)</option>
-                <option value="6-12">6 a 12 unidades</option>
-                <option value="13-24">13 a 24 unidades</option>
-                <option value="25+">25 ou mais unidades</option>
-                <option value="personalizado">Quantidade personalizada</option>
-              </select>
-              <span class="form__error" id="erroQuantidade"></span>
-            </div>
+  <label class="form__label">Quantidade desejada *</label>
+
+  <div class="quantidade-wrap" id="quantidadeWrap">
+
+    <!-- Item 1 (sempre visível) -->
+    <div class="quantidade-item" id="item1">
+      <input
+        class="form__input quantidade-num"
+        type="number"
+        id="qtd1"
+        name="qtd1"
+        placeholder="Qtd"
+        min="1"
+        max="999"
+      />
+      <select class="form__input form__select quantidade-tipo" id="tipo1" name="tipo1">
+        <option value="" disabled selected>Embalagem</option>
+        <option value="500ml">500ml</option>
+        <option value="1L">1 Litro</option>
+      </select>
+      <button type="button" class="btn-add-item" id="btnAddItem" title="Adicionar outro tamanho">
+        + Adicionar
+      </button>
+    </div>
+
+    <!-- Item 2 (oculto por padrão) -->
+    <div class="quantidade-item" id="item2" hidden>
+      <input
+        class="form__input quantidade-num"
+        type="number"
+        id="qtd2"
+        name="qtd2"
+        placeholder="Qtd"
+        min="1"
+        max="999"
+      />
+      <select class="form__input form__select quantidade-tipo" id="tipo2" name="tipo2">
+        <option value="" disabled selected>Embalagem</option>
+        <option value="500ml">500ml</option>
+        <option value="1L">1 Litro</option>
+      </select>
+      <button type="button" class="btn-remove-item" id="btnRemoveItem" title="Remover">
+        ✕
+      </button>
+    </div>
+
+  </div>
+  <span class="form__error" id="erroQuantidade"></span>
+</div>
             <div class="form__group">
               <label class="form__label" for="observacoes">Observações</label>
               <textarea class="form__input form__textarea" id="observacoes" name="observacoes" placeholder="Endereço de entrega, preferências, datas, etc." rows="4"></textarea>
