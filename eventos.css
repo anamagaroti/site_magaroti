@@ -1,0 +1,495 @@
+/* =============================================
+   MAGAROTI SUCOS — eventos.css
+   Estilos exclusivos da página "Eventos & Parcerias".
+   Reutiliza integralmente os tokens de styles.css
+   (cores, fontes, espaçamentos, sombras, radius).
+   Nenhuma variável nova de cor/fonte é criada aqui.
+   ============================================= */
+
+/* =========================================
+   NAV — estado ativo (link "Eventos")
+   ========================================= */
+.nav__link--active {
+  color: var(--laranja-vivo);
+}
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+/* =========================================
+   PLACEHOLDERS DE IMAGEM
+   Estética neutra, deixando claro que a imagem
+   será substituída. Usa dashed border no padrão
+   já existente em .galeria__placeholder.
+   ========================================= */
+.evt-img-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*background: linear-gradient(145deg, var(--creme), var(--creme-escuro));*/
+  /*border: 2px dashed rgba(59,32,16,.18);*/
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.evt-img-placeholder__img {
+  max-width: 60%;
+  max-height: 70%;
+  object-fit: contain;
+  opacity: .9;
+}
+
+.evt-img-placeholder__tag {
+  position: absolute;
+  bottom: .85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(59,32,16,.85);
+  color: var(--branco);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: .35rem .85rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.evt-img-placeholder--hero {
+  aspect-ratio: 4 / 5;
+  max-width: 460px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.evt-img-placeholder--produto {
+  aspect-ratio: 4 / 3;
+}
+
+.evt-img-placeholder--tall {
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-md);
+}
+
+.evt-img-placeholder--galeria {
+  aspect-ratio: 1 / 1;
+}
+
+.evt-img-placeholder--pomar {
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-lg);
+}
+
+/* =========================================
+   01. HERO
+   ========================================= */
+.evt-hero {
+  padding-top: 8rem;
+  padding-bottom: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.evt-hero__content {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: var(--space-xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.evt-hero__headline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--laranja);
+  margin-bottom: var(--space-sm);
+}
+
+/* =========================================
+   02. TIPOS DE EVENTO
+   ========================================= */
+.evt-tipos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.evt-tipo-card {
+  background: var(--creme);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(201,90,30,.08);
+  transition: transform var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease),
+              border-color var(--duration) var(--ease);
+}
+
+.evt-tipo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(201,90,30,.2);
+}
+
+.evt-tipo-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--marrom);
+  margin-bottom: .5rem;
+}
+
+.evt-tipo-card p {
+  font-size: .9rem;
+  color: var(--marrom-mid);
+  line-height: 1.6;
+}
+
+/* =========================================
+   03. DUAS FORMAS DE SERVIR
+   ========================================= */
+.evt-formatos__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.evt-formato-card {
+  background: var(--branco);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(201,90,30,.08);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--duration) var(--ease),
+              transform var(--duration) var(--ease);
+}
+
+.evt-formato-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.evt-formato-card__img {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.evt-formato-card__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.evt-formato-card__eyebrow {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+
+.evt-formato-card__body h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--marrom);
+}
+
+.evt-formato-card__body p {
+  color: var(--marrom-mid);
+  font-size: .95rem;
+}
+
+.evt-formato-card__lista {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin: .5rem 0 1rem;
+}
+
+.evt-formato-card__lista li {
+  font-size: .88rem;
+  color: var(--marrom-mid);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.evt-formato-card__lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--laranja-vivo);
+}
+
+.evt-formato-card__body .btn {
+  align-self: flex-start;
+  margin-top: .5rem;
+}
+
+/* =========================================
+   04. PERSONALIZAÇÃO
+   ========================================= */
+.evt-personalizacao__grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.evt-personalizacao__text p {
+  color: var(--marrom-mid);
+  margin-bottom: var(--space-sm);
+  font-size: 1.02rem;
+}
+
+.evt-personalizacao__destaque {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--laranja);
+  margin: var(--space-sm) 0 !important;
+}
+
+.evt-personalizacao__lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.evt-personalizacao__lista li {
+  font-size: .9rem;
+  color: var(--marrom-mid);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.evt-personalizacao__lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--verde);
+}
+
+.evt-tag-orcamento {
+  display: inline-block;
+  background: rgba(74,124,63,.1);
+  color: var(--verde);
+  border: 1px solid rgba(74,124,63,.25);
+  padding: .4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: .8rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  margin-right: var(--space-sm);
+}
+
+/* =========================================
+   05. GALERIA DE INSPIRAÇÕES
+   ========================================= */
+.evt-galeria__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.evt-galeria__item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease);
+}
+
+.evt-galeria__item:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.evt-galeria__nota {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: .8rem;
+  color: var(--marrom-mid);
+  opacity: .8;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   06. ORIGEM / POMAR
+   ========================================= */
+.evt-pomar__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.evt-pomar__text p {
+  color: var(--marrom-mid);
+  font-size: 1.02rem;
+}
+
+/* =========================================
+   07. PARCERIA COM PROFISSIONAIS
+   ========================================= */
+.evt-parceria__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.evt-parceria-card {
+  background: var(--branco);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(201,90,30,.08);
+  text-align: center;
+}
+
+.evt-parceria-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--marrom);
+  margin-bottom: .5rem;
+}
+
+.evt-parceria-card p {
+  font-size: .9rem;
+  color: var(--marrom-mid);
+  line-height: 1.6;
+}
+
+.evt-parceria__cta {
+  text-align: center;
+}
+
+/* =========================================
+   08. CONDIÇÕES ESPECIAIS
+   ========================================= */
+.evt-condicoes__box {
+  max-width: 640px;
+  text-align: center;
+  background: var(--creme);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid rgba(201,90,30,.1);
+}
+
+.evt-condicoes__box p {
+  color: var(--marrom-mid);
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+/* =========================================
+   09. COMO FUNCIONA
+   ========================================= */
+.evt-steps .step__icon {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--laranja-vivo);
+}
+
+/* =========================================
+   10. ORÇAMENTO (FORMULÁRIO)
+   ========================================= */
+.evt-orcamento__grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.evt-orcamento__info p {
+  color: var(--marrom-mid);
+  font-size: 1.02rem;
+}
+
+.evt-orcamento__form-wrap {
+  background: var(--branco);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(201,90,30,.08);
+}
+
+.evt-form__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* =========================================
+   11. CTA FINAL
+   ========================================= */
+.evt-cta-final {
+  background: var(--marrom);
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.evt-cta-final__box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: .5rem;
+}
+
+.evt-cta-final__box p {
+  color: rgba(255,253,247,.75);
+  margin-bottom: var(--space-lg);
+}
+
+/* =========================================
+   RESPONSIVO — TABLET (≤ 900px)
+   ========================================= */
+@media (max-width: 900px) {
+  .evt-hero { padding-top: 6rem; }
+  .evt-hero__content { grid-template-columns: 1fr; text-align: center; }
+  .evt-hero__visual { order: -1; }
+  .evt-hero__content .hero__actions { justify-content: center; }
+
+  .evt-tipos__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .evt-formatos__grid { grid-template-columns: 1fr; }
+
+  .evt-personalizacao__grid { grid-template-columns: 1fr; }
+  .evt-personalizacao__visual { max-width: 340px; margin: 0 auto; }
+
+  .evt-galeria__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .evt-pomar__grid { grid-template-columns: 1fr; }
+
+  .evt-parceria__grid { grid-template-columns: 1fr; }
+
+  .evt-orcamento__grid { grid-template-columns: 1fr; }
+  .evt-form__cols { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   RESPONSIVO — MOBILE (≤ 600px)
+   ========================================= */
+@media (max-width: 600px) {
+  .evt-tipos__grid { grid-template-columns: 1fr; }
+  .evt-galeria__grid { grid-template-columns: 1fr 1fr; }
+  .evt-orcamento__form-wrap { padding: 1.5rem 1rem; }
+  .evt-condicoes__box { padding: var(--space-lg) 1.25rem; }
+}
