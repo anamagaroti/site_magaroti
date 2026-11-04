@@ -1228,8 +1228,8 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 }
 
 .familia__avatar {
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1237,10 +1237,6 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   font-size: 2.4rem;
   margin: 0 auto 1.25rem;
 }
-
-.familia__avatar--pai  { background: rgba(74,124,63,.12);  border: 2px solid rgba(74,124,63,.25); }
-.familia__avatar--mae  { background: rgba(224,107,32,.12); border: 2px solid rgba(224,107,32,.3); }
-.familia__avatar--filho { background: rgba(59,32,16,.07);  border: 2px solid rgba(59,32,16,.15); }
 
 .familia__role {
   display: inline-block;
